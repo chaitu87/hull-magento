@@ -12,5 +12,11 @@
   "require": {
     "hull/hull": "*",
     "magento-hackathon/magento-composer-installer": "*"
+  },
+  "extra": {
+    "map": {
+      "app/code/community/Hull": "app/code/community/Hull",
+      "app/design/frontend/default/default/layout/hull": "app/design/frontend/default/default/layout/hull"
+    }
   }
 }
