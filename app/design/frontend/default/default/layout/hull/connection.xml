@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout>
+  <default>
+    <reference name="head">
+      <block type="hull_connection/template" template="hull/connection/init.phtml" name="hull_connection_init" />
+    </reference>
+    <reference name="top.links">
+      <action method="addLink" translate="label title" module="hull_connection" ifconfig="hull_options/hull/enabled">
+        <label>Connect with Hull</label>
+        <!-- <url helper="hull_connection/getConnectUrl"/> -->
+        <title>Connect with Hull</title>
+        <position>110</position>
+        <aParams>
+          <rel>hull-connect</rel>
+        </aParams>
+      </action>
+    </reference> 
+  </default>
+  <customer_account_login>
+    <reference name="content">
+      <block type="hull_connection/template" template="hull/connection/login.phtml" name="hull_connection_login" />
+    </reference>
+  </customer_account_login>
+  <hull_connection_customer_account_complete translate="label">
+    <label>Hull Complete registration</label>
+    <remove name="right"/>
+    <remove name="left"/>
+
+    <reference name="root">
+      <action method="setTemplate"><template>page/1column.phtml</template></action>
+    </reference>
+    <reference name="content">
+      <block type="hull_connection/complete" name="hull_connection_complete" template="hull/connection/complete_form.phtml"/>
+    </reference>
+  </hull_connection_customer_account_complete>
+</layout>

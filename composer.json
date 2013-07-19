@@ -1,0 +1,16 @@
+{
+  "name": "hull/hull-magento",
+  "type": "magento-module",
+  "license": "MIT",
+  "description": "Use hull.io social features within Magento",
+  "authors": [
+    {
+      "name": "Xavier Cambar",
+      "email": "xavier@hull.io"
+    }
+  ],
+  "require": {
+    "hull/hull": "*",
+    "magento-hackathon/magento-composer-installer": "*"
+  }
+}

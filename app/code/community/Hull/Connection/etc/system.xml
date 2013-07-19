@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+  <tabs>
+    <hull translate="label" module="hull_connection">
+      <label>Hull.io</label>
+      <sort_order>9999</sort_order>
+    </hull>
+  </tabs>
+  <sections>
+    <hull_options translate="label" module="hull_connection">
+      <label>Configuration</label>
+      <tab>hull</tab>
+      <frontend_type>text</frontend_type>
+      <show_in_store>1</show_in_store>
+      <show_in_default>1</show_in_default>
+      <show_in_website>1</show_in_website>
+      <groups>
+        <hull translate="label" module="hull_connection">
+          <label>Hull.io</label>
+          <sort_order>100</sort_order>
+          <show_in_store>1</show_in_store>
+          <show_in_default>1</show_in_default>
+          <show_in_website>1</show_in_website>
+          <fields>
+            <enabled translate="label">
+              <label>Enabled</label>
+              <frontend_type>select</frontend_type> 
+              <source_model>adminhtml/system_config_source_yesno</source_model>
+              <sort_order>10</sort_order>
+              <show_in_store>1</show_in_store>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+            </enabled>
+            <app_id module="hull_connection">
+              <label>Application ID</label>
+              <frontend_type>text</frontend_type> 
+              <sort_order>20</sort_order>
+              <show_in_store>1</show_in_store>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+            </app_id>
+            <org_url module="hull_connection">
+              <label>Organisation URL</label>
+              <frontend_type>text</frontend_type> 
+              <sort_order>30</sort_order>
+              <show_in_store>1</show_in_store>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+            </org_url>
+            <app_secret module="hull_connection">
+              <label>Application Secret</label>
+              <frontend_type>text</frontend_type> 
+              <sort_order>40</sort_order>
+              <show_in_store>1</show_in_store>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+            </app_secret>
+          </fields>
+        </hull>
+      </groups>
+    </hull_options>
+  </sections>
+</config>

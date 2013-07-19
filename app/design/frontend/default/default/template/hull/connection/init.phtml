@@ -1,0 +1,17 @@
+<script type="text/javascript" src="http://code.jquery.com/jquery-2.0.0.min.js"></script>
+<script>jQuery.noConflict();</script>
+<script type="text/javascript" src="//js.hull.dev/dist/develop/hull.js"></script>
+<script type="text/javascript">
+Hull.init(<?php echo json_encode($this->getInitConfig())?>);
+
+Hull.on('hull.logout', function () {
+  document.location = "<?php echo $this->getLogoutUrl(); ?>"
+});
+
+Hull.on('hull.login', function () {
+  Mage.Cookies.set('hull-referer', '<?php echo $this->getUrlBase64('*/*/*', array('_current' => true)); ?>');
+  document.location = "<?php echo $this->getConnectUrl(); ?>"
+});
+</script>
+
+
