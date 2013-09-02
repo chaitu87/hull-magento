@@ -18,11 +18,48 @@ It means that:
 From that point, you can build hull-integrated magento plugins to enhance the engagement of your users
 and ease the social spread of your e-commerce site.
 
-## Installation
+# Installation
 
-* Download this repository as a zip/tgz file.
-* Uncompress the file at the root of the project, so the files are located at the right place right from the start.
-* run `composer install` to install dependencies (see [Composer](http://getcomposer.org)) for more details on how to use Composer.
+## Requirements
+
+### jQuery
+
+Hull.js requires jquery to run.
+
+__If you have downloaded jQuery for your site__, the following will ensure that hull.js is embedded after jQuery:
+
+* Open `%YOUR_APP%/design/frontend/default/default/layout/hull/connection.xml`
+* At the XML path layout> default> reference[name="head"], make sure it looks like the following:
+
+    <layout>
+      <default>
+        <reference name="head">
+          <action method="addJs"><script>PATH/TO/YOUR/jquery.js</script> <!-- Add this line-->
+          <action method="addJs"><script>PATH/TO/YOUR/jquery_no_conflict.js</script> <!-- Optional, see below -->
+          <block type="hull_connection/template" template="hull/connection/init.phtml" name="hull_connection_init">
+        </reference>
+        <!-- Rest of the file here-->
+
+__Note:__ If you don't need to run jQuery in `noConflict` mode, you can skip the line including `jquery_no_conflict.js`.
+Otherwise, use the following as the contents of the `jquery_no_conflict.js` file:
+
+    jQuery.noConflict();
+
+### Composer
+
+If you don't know [Composer](http://getcomposer.org), it allows to manage easily the dependencies of a PHP project.
+
+To install it, run the following in your terminal:
+
+    $ curl -sS https://getcomposer.org/installer | php
+
+Then after uncompressing the Magento plugin in your app, run from the %MAGENTO_ROOT%:
+
+    $ composer install
+
+
+## Activation of the plugin
+
 * Activate the plugin im `Admin > Configuration > Hull.io`
 * Enter your hull.io credentials, then save
 * That's it.
