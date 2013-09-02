@@ -5,6 +5,9 @@ class Hull_Connection_Model_Config
   const XML_PATH_APP_ID = 'hull_options/hull/app_id';
   const XML_PATH_ORG_URL = 'hull_options/hull/org_url';
   const XML_PATH_APP_SECRET = 'hull_options/hull/app_secret';
+  const XML_PATH_HULL_VERSION = 'hull_options/hull/hull_version';
+
+  const DEFAULT_HULL_VERSION = '0.6.7';
 
   public function isEnabled($storeId=null)
   {
@@ -32,5 +35,13 @@ class Hull_Connection_Model_Config
     return trim(Mage::getStoreConfig(self::XML_PATH_ORG_URL, $storeId));
   }
 
+  public function getHullVersion($storeId=null)
+  {
+    $version = trim(Mage::getStoreConfig(self::XML_PATH_HULL_VERSION, $storeId));
+    if (!strlen($version)) {
+      $version = self::DEFAULT_HULL_VERSION;
+    }
+    return $version;
+  }
 }
 

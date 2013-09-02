@@ -65,6 +65,11 @@ class Hull_Connection_Block_Template extends Mage_Core_Block_Template
     return $conf;
   }
 
+  public function getHullVersion()
+  {
+    return Mage::getSingleton('hull_connection/config')->getHullVersion();
+  }
+
   protected function _toHtml()
   {
     if (!$this->isEnabled()) {

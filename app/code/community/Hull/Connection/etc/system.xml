@@ -47,6 +47,14 @@
               <show_in_default>1</show_in_default>
               <show_in_website>1</show_in_website>
             </org_url>
+            <hull_version module="hull_connection">
+              <label>Hull.js version (Leave blank if unsure)</label>
+              <frontend_type>text</frontend_type> 
+              <sort_order>50</sort_order>
+              <show_in_store>1</show_in_store>
+              <show_in_default>1</show_in_default>
+              <show_in_website>1</show_in_website>
+            </hull_version>
             <app_secret module="hull_connection">
               <label>Application Secret</label>
               <frontend_type>text</frontend_type> 
