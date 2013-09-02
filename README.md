@@ -26,7 +26,7 @@ and ease the social spread of your e-commerce site.
 
 The easiest way is to run the provided install script from the root of your Magento application:
 
-  $ curl -kL https://raw.github.com/hull/hull-magento/master/install.sh | sh
+    $ curl -kL https://raw.github.com/hull/hull-magento/master/install.sh | sh
 
 ## Requirements
 
