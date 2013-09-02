@@ -8,9 +8,10 @@ class Hull_Connection_Model_User extends Varien_object {
   {
     $client = Mage::helper('hull_connection')->getClient();
     try {
+      // Get Actual user from Hull's Server from its ID
       $res = $client->get($userId);
       if (isset($res)) {
-        return new self($res);  
+        return new self($res);
       }
     } catch (Exception $e) {
       // echo "Error fetching hull user $userId";

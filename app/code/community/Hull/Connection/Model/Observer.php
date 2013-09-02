@@ -8,14 +8,17 @@ class Hull_Connection_Model_Observer
     $customerSession = $this->_getCustomerSession();
     $hullSession     = $this->_getHullSession();
     
+    // If not connected on Hull, we just pass
     if (!$hullSession->isConnected()) {
       return;
     }
 
+    // If connected on Hull and not connected as a Magento customer
     if (!$customerSession->isLoggedIn()) {
       $currentUser  = $hullSession->getCurrentUser();
       $customer     = $currentUser->getOrCreateCustomer();
       if ($customer) {
+        // Auto login
         $customerSession->setCustomerAsLoggedIn($customer);
       }
     }
