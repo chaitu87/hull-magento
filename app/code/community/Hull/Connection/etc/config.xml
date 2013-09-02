@@ -7,15 +7,33 @@
   </modules>
   <global>
     <events>
+      <customer_login>
+        <observers>
+          <hull_connection>
+            <type>singleton</type>
+            <class>hull_connection/observer</class>
+            <method>customerJustLoggedIn</method>
+          </hull_connection>
+        </observers>
+      </customer_login>
       <customer_logout>
         <observers>
           <hull_connection>
             <type>singleton</type>
             <class>hull_connection/observer</class>
-            <method>logout</method>
+            <method>customerJustLoggedOut</method>
           </hull_connection>
         </observers>
       </customer_logout>
+      <controller_action_predispatch>
+        <observers>
+          <hull_connection>
+            <type>singleton</type>
+            <class>hull_connection/observer</class>
+            <method>currentCustomer</method>
+          </hull_connection>
+        </observers>
+      </controller_action_predispatch>
     </events>
     <models>
       <hull_connection>

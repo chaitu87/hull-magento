@@ -1,4 +1,5 @@
 <?php
+require_once('Hull/Client.php');
 class Hull_Connection_Helper_Data extends Mage_Core_Helper_Abstract
 {
   public function getCompletePostUrl()

@@ -5,7 +5,8 @@ $installer->addAttribute('customer', 'hull_uid', array(
   'type'      => 'varchar',
   'label'     => 'Hull User id',
   'visible'   => false,
-  'required'  => false
+  'required'  => false,
+  'unique'    => true
 ));
 $installer->endSetup();
 

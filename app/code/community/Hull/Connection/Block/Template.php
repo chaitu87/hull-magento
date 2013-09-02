@@ -27,24 +27,41 @@ class Hull_Connection_Block_Template extends Mage_Core_Block_Template
     return Mage::getSingleton('hull_connection/config')->isEnabled();
   }
 
-  public function getInitConfig()
+  public function getUserForHash()
   {
-    $conf = array(
-      "appId" => $this->getAppId(),
-      "orgUrl" => $this->getOrgUrl()
-    );
-
+    $hullSession    = Mage::getSingleton('hull_connection/session');
+    $currentUserId  = $hullSession->getCurrentUserId();
     if ($this->helper('customer')->isLoggedIn()) {
       $customer = $this->helper('customer')->getCustomer();
       if (!$customer->hasHullUid()) {
-        $user = array(
+        return array(
           'id'    => $customer->getId(),
           'email' => $customer->getEmail(),
-          'name'  => $customer->getFirstname() . ' ' . $customer->getLastname());
-        $hullClient = Mage::helper(hull_connection)->getClient();
-        $conf["userHash"] = $hullClient->userHash($user);
+          'name'  => ($customer->getFirstname() . ' ' . $customer->getLastname())
+        );
       }
     }
+  }
+
+  public function getInitConfig()
+  {
+    $hullClient     = Mage::helper('hull_connection')->getClient();
+    $customer = $this->helper('customer')->getCustomer();
+    $conf = array(
+      "appId" => $this->getAppId(),
+      "orgUrl" => $this->getOrgUrl(),
+      "jsUrl" => "https://d3f5pyioow99x0.cloudfront.net"
+    );
+
+    if (Mage::getSingleton('hull_connection/session')->isLoggingOut()) {
+      $conf["userHash"] = $hullClient->userHash(array());
+    } else {
+      $userForHash = $this->getUserForHash();
+      if ($userForHash) {
+        $conf["userHash"] = $hullClient->userHash($userForHash);
+      }
+    }
+
     return $conf;
   }
 
