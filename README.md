@@ -20,6 +20,14 @@ and ease the social spread of your e-commerce site.
 
 # Installation
 
+## Install via Magento Connect (Soon)
+
+## Install manually
+
+The easiest way is to run the provided install script from the root of your Magento application:
+
+  $ curl -kL https://raw.github.com/hull/hull-magento/master/install.sh | sh
+
 ## Requirements
 
 ### jQuery
@@ -44,19 +52,6 @@ __Note:__ If you don't need to run jQuery in `noConflict` mode, you can skip the
 Otherwise, use the following as the contents of the `jquery_no_conflict.js` file:
 
     jQuery.noConflict();
-
-### Composer
-
-If you don't know [Composer](http://getcomposer.org), it allows to manage easily the dependencies of a PHP project.
-
-To install it, run the following in your terminal:
-
-    $ curl -sS https://getcomposer.org/installer | php
-
-Then after uncompressing the Magento plugin in your app, run from the %MAGENTO_ROOT%:
-
-    $ composer install
-
 
 ## Activation of the plugin
 
