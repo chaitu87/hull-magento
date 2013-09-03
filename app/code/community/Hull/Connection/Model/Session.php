@@ -11,6 +11,7 @@ class Hull_Connection_Model_Session extends Varien_Object
   {
     if($this->getCookie()) {
       $data = json_decode(base64_decode($this->getCookie()));
+      if (empty($data)) { return; }
       $payload = $data->{'Hull-User-Sig'};
       $this->_userId = $data->{'Hull-User-Id'};
       list($time, $signature) = explode(".", $payload);
