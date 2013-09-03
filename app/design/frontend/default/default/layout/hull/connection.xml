@@ -2,8 +2,8 @@
 <layout>
   <default>
     <reference name="head">
-      <action method="addJs"><script>jquery/jquery.js</script></action>
-      <action method="addJs"><script>jquery/no_conflict.js</script></action>
+      <!-- <action method="addJs"><script>jquery/jquery.js</script></action> -->
+      <!-- <action method="addJs"><script>jquery/no_conflict.js</script></action> -->
       <block type="hull_connection/template" template="hull/connection/init.phtml" name="hull_connection_init" />
     </reference>
     <reference name="top.links">
