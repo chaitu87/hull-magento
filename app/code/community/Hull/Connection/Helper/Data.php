@@ -4,7 +4,7 @@ class Hull_Connection_Helper_Data extends Mage_Core_Helper_Abstract
 {
   public function getCompletePostUrl()
   {
-    return $this->_getUrl('hull_connection/customer_account/finish');
+    return $this->_getUrl('hull/user/complete');
   }
 
   public function getClient()

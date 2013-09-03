@@ -2,6 +2,8 @@
 <layout>
   <default>
     <reference name="head">
+      <action method="addJs"><script>jquery/jquery.js</script></action>
+      <action method="addJs"><script>jquery/no_conflict.js</script></action>
       <block type="hull_connection/template" template="hull/connection/init.phtml" name="hull_connection_init" />
     </reference>
     <reference name="top.links">
@@ -14,14 +16,14 @@
           <rel>hull-connect</rel>
         </aParams>
       </action>
-    </reference> 
+    </reference>
   </default>
   <customer_account_login>
     <reference name="content">
       <block type="hull_connection/template" template="hull/connection/login.phtml" name="hull_connection_login" />
     </reference>
   </customer_account_login>
-  <hull_connection_customer_account_complete translate="label">
+  <hull_user_complete translate="label">
     <label>Hull Complete registration</label>
     <remove name="right"/>
     <remove name="left"/>
@@ -30,7 +32,7 @@
       <action method="setTemplate"><template>page/1column.phtml</template></action>
     </reference>
     <reference name="content">
-      <block type="hull_connection/complete" name="hull_connection_complete" template="hull/connection/complete_form.phtml"/>
+      <block type="hull_connection/complete" name="hull_user_complete" template="hull/connection/complete_form.phtml"/>
     </reference>
-  </hull_connection_customer_account_complete>
+  </hull_user_complete>
 </layout>

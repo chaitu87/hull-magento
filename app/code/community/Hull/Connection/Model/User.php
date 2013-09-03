@@ -60,7 +60,7 @@ class Hull_Connection_Model_User extends Varien_object {
 
   public function getOrCreateCustomer() {
     if (!is_null($this->customer)) {
-      return $this->customer();
+      return $this->customer;
     }
 
     $customerLookupMethods = array(
@@ -136,24 +136,34 @@ class Hull_Connection_Model_User extends Varien_object {
   }
 
   private function _createCustomer() {
-    $customerModel = Mage::getModel('customer/customer');
-    $customer  = new $customerModel();
-
+    $customer = Mage::getModel('customer/customer');
     $customer->setWebsiteId(Mage::app()->getWebsite()->getId());
 
     if(!$customer->getId()) {
-      $customer->setId(null)
-        ->setHullUid($this->getId())
-        ->setGender($this->getGender())
-        ->setEmail($this->getEmail())
-        ->setFirstname($this->getFirstName())
-        ->setLastname($this->getLastName())
-        ->setPassword($customer->generatePassword(8));
-      $customer->save();
-      $customer->setConfirmation(null);
-      $customer->save();
-      $customer->sendNewAccountEmail();
-      return $customer;
+      $hullUserEmail = $this->getEmail();
+      //This is to avoid redirect loops;
+      $currentRouteName = Mage::app()->getRequest()->getRouteName();
+
+      if (empty($hullUserEmail)) {
+        if ($currentRouteName != 'hull') {
+          $targetUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).'hull/user/complete';
+          Mage::app()->getResponse()->setRedirect($targetUrl);
+        }
+        return null;
+      } else {
+        $customer->setId(null)
+          ->setHullUid($this->getId())
+          ->setGender($this->getGender())
+          ->setEmail($this->getEmail())
+          ->setFirstname($this->getFirstName())
+          ->setLastname($this->getLastName())
+          ->setPassword($customer->generatePassword(8));
+        $customer->save();
+        $customer->setConfirmation(null);
+        $customer->save();
+        $customer->sendNewAccountEmail();
+        return $customer;
+      }
     }
   }
 

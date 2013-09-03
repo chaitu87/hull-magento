@@ -66,19 +66,19 @@
   </global>
   <frontend>
     <routers>
-      <hull_connection>
+      <hull>
         <use>standard</use>
         <args>
           <module>Hull_Connection</module>
-          <frontName>hull_connection</frontName>
+          <frontName>hull</frontName>
         </args>
-      </hull_connection>
+      </hull>
     </routers>
     <layout>
       <updates>
-        <hull_connection module="Hull_Connection">
+        <hull module="Hull_Connection">
           <file>hull/connection.xml</file>
-        </hull_connection>
+        </hull>
       </updates>
     </layout>
   </frontend>
