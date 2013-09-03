@@ -33,7 +33,11 @@ class Hull_Connection_Model_User extends Varien_object {
     if (empty($lastName) && empty($firstName)) {
       $name = explode(" ", $data->name, 2);
       $firstName = $name[0];
-      $lastName = $name[1];
+      if (isset($name[1])) {
+        $lastName = $name[1];
+      } else {
+        $lastName = "";
+      }
     }
     $this->setFirstName($firstName);
     $this->setLastName($lastName);
@@ -141,6 +145,9 @@ class Hull_Connection_Model_User extends Varien_object {
 
     if(!$customer->getId()) {
       $hullUserEmail = $this->getEmail();
+      if (empty($hullUserEmail)) {
+        $hullUserEmail = $this->_getProvidedEmail();
+      }
       //This is to avoid redirect loops;
       $currentRouteName = Mage::app()->getRequest()->getRouteName();
 
@@ -154,7 +161,7 @@ class Hull_Connection_Model_User extends Varien_object {
         $customer->setId(null)
           ->setHullUid($this->getId())
           ->setGender($this->getGender())
-          ->setEmail($this->getEmail())
+          ->setEmail($hullUserEmail)
           ->setFirstname($this->getFirstName())
           ->setLastname($this->getLastName())
           ->setPassword($customer->generatePassword(8));
@@ -165,6 +172,14 @@ class Hull_Connection_Model_User extends Varien_object {
         return $customer;
       }
     }
+  }
+
+  private function _getProvidedEmail() {
+    $email = null;
+    if (Mage::app()->getRequest()->isPost()) {
+      $email = Mage::app()->getRequest()->getPost('email');
+    }
+    return $email;
   }
 
   private function _getIdentityAttr($attr, $fallback = null)
