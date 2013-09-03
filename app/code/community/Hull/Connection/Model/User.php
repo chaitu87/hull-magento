@@ -3,22 +3,19 @@
 class Hull_Connection_Model_User extends Varien_object {
 
   private $customer;
-  
-  public static function find($userId)
+
+  public function find($userId)
   {
     $client = Mage::helper('hull_connection')->getClient();
-    try {
-      // Get Actual user from Hull's Server from its ID
-      $res = $client->get($userId);
-      if (isset($res)) {
-        return new self($res);
-      }
-    } catch (Exception $e) {
-      // echo "Error fetching hull user $userId";
+    // Get Actual user from Hull's Server from its ID
+    $res = $client->get($userId);
+    if (isset($res)) {
+      $this->hydrate($res);
     }
+    return $this;
   }
 
-  public function __construct($data)
+  public function hydrate($data)
   {
     $this->setAttributes($data);
     $this->setId($data->id);
@@ -33,7 +30,7 @@ class Hull_Connection_Model_User extends Varien_object {
 
     $firstName = $this->_getIdentityAttr("first_name");
     $lastName = $this->_getIdentityAttr("last_name");
-    if (!$lastName && !$firstName) {
+    if (empty($lastName) && empty($firstName)) {
       $name = explode(" ", $data->name, 2);
       $firstName = $name[0];
       $lastName = $name[1];
@@ -43,12 +40,12 @@ class Hull_Connection_Model_User extends Varien_object {
     return $this;
   }
 
-  public function getEmail() 
+  public function getEmail()
   {
     return $this->_getIdentityAttr("email");
   }
 
-  public function getGender($fallback) 
+  public function getGender($fallback = null)
   {
     $gender = $this->_getIdentityAttr("gender", $fallback);
     if (!is_null($gender)) {
@@ -56,7 +53,7 @@ class Hull_Connection_Model_User extends Varien_object {
     }
   }
 
-  public function getBirthdate($fallback) 
+  public function getBirthdate($fallback = null)
   {
     return $this->_getIdentityAttr("birthdate", $fallback);
   }
@@ -160,16 +157,16 @@ class Hull_Connection_Model_User extends Varien_object {
     }
   }
 
-  private function _getIdentityAttr($attr, $fallback)
+  private function _getIdentityAttr($attr, $fallback = null)
   {
     $mainIdent = $this->getMainIdentity();
-    if ($mainIdent && $mainIdent->$attr) {
+    if ($mainIdent && !empty($mainIdent->$attr)) {
       return $mainIdent->$attr;
     } else {
       $identities = $this->getIdentities();
       $ret = false;
       foreach($identities as $n => $i) {
-        if (!$ret && $i->$attr) {
+        if (!$ret && !empty($i->$attr)) {
           $ret = $i->$attr;
         }
       }

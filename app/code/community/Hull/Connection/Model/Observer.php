@@ -4,10 +4,10 @@ class Hull_Connection_Model_Observer
 
   public function currentCustomer($params)
   {
-    
+
     $customerSession = $this->_getCustomerSession();
     $hullSession     = $this->_getHullSession();
-    
+
     // If not connected on Hull, we just pass
     if (!$hullSession->isConnected()) {
       return;
@@ -25,7 +25,7 @@ class Hull_Connection_Model_Observer
   }
 
   public function customerJustLoggedIn($params)
-  { 
+  {
     $this->_getHullSession()->setLatestEvent('customer_login');
   }
 
@@ -35,24 +35,24 @@ class Hull_Connection_Model_Observer
     setcookie($cookieName, 'logout', time() + 86400, '/');
   }
 
-  protected function _setLatestEvent($eventName) 
+  protected function _setLatestEvent($eventName)
   {
     if (is_null($this->_getLatestEvent())) {
-      $this->_getHullSession()->setLatestEvent($eventName);  
+      $this->_getHullSession()->setLatestEvent($eventName);
     }
   }
 
-  protected function _getLatestEvent($eventName) 
+  protected function _getLatestEvent($eventName)
   {
     return $this->_getHullSession()->getLatestEvent($eventName);
   }
 
-  protected function _getHullSession() 
+  protected function _getHullSession()
   {
     return Mage::getSingleton('hull_connection/session');
   }
 
-  protected function _getCustomerSession() 
+  protected function _getCustomerSession()
   {
     return Mage::getSingleton('customer/session');
   }
