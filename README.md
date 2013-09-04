@@ -61,6 +61,20 @@ Otherwise, use the following as the contents of the `jquery_no_conflict.js` file
 * Enter your hull.io credentials, then save
 * That's it.
 
+# Use cases
+
+* __Hull knows the email of the user__
+    * Non-existing email in the Magento userbase: ✔
+    * Existing email in the Magento userbase without hull ID: Not a real-world use-case, a Hull ID is automatically created for EACH user added to the Magento userbase
+    * Existing email in the Magento userbase with Hull ID, confirmed email:
+    * Existing email in the Magento userbase with Hull ID, unconfirmed email:
+
+* __Hull does not know the email of the user__
+    * Non-existing email in the Magento userbase: ✔ (The user is asked to enter an email)
+    * Existing email in the Magento userbase without hull ID: Not a real-world use-case, a Hull ID is automatically created for EACH user added to the Magento userbase
+    * Existing email in the Magento userbase with Hull ID, confirmed email:
+    * Existing email in the Magento userbase with Hull ID, unconfirmed email:
+
 ## License
 
 MIT
