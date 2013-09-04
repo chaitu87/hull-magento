@@ -65,15 +65,11 @@ Otherwise, use the following as the contents of the `jquery_no_conflict.js` file
 
 * __Hull knows the email of the user__
     * Non-existing email in the Magento userbase: ✔
-    * Existing email in the Magento userbase without hull ID: Not a real-world use-case, a Hull ID is automatically created for EACH user added to the Magento userbase
-    * Existing email in the Magento userbase with Hull ID, confirmed email:
-    * Existing email in the Magento userbase with Hull ID, unconfirmed email:
+    * Existing email in the Magento userbase with BYOU (Bring Your Own Users) Hull ID: The user logs in with its FB credentials, then runs with BYOU User.
 
-* __Hull does not know the email of the user__
-    * Non-existing email in the Magento userbase: ✔ (The user is asked to enter an email)
-    * Existing email in the Magento userbase without hull ID: Not a real-world use-case, a Hull ID is automatically created for EACH user added to the Magento userbase
-    * Existing email in the Magento userbase with Hull ID, confirmed email:
-    * Existing email in the Magento userbase with Hull ID, unconfirmed email:
+* __Hull does not know the email of the user__ (The user is asked to enter an email)
+    * Non-existing email in the Magento userbase: ✔
+    * Existing email in the Magento userbase with Hull ID: Connection refused, another email must be entered
 
 ## License
 
