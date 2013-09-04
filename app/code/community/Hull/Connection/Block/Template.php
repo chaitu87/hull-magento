@@ -39,6 +39,10 @@ class Hull_Connection_Block_Template extends Mage_Core_Block_Template
           'email' => $customer->getEmail(),
           'name'  => ($customer->getFirstname() . ' ' . $customer->getLastname())
         );
+      } else {
+        return array(
+          'hull_user_id' => $customer->getHullUid()
+        );
       }
     }
   }

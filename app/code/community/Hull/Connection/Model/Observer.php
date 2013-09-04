@@ -21,6 +21,13 @@ class Hull_Connection_Model_Observer
         // Auto login
         $customerSession->setCustomerAsLoggedIn($customer);
       }
+    } else {
+      $customer = $customerSession->getCustomer();
+      $hullUid = $customer->getHullUid();
+      if (empty($hullUid)) {
+        $customer->setHullUid($hullSession->getCurrentUserId());
+        $customer->save();
+      }
     }
   }
 
