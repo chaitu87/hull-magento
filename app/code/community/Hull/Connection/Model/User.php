@@ -151,13 +151,7 @@ class Hull_Connection_Model_User extends Varien_object {
       //This is to avoid redirect loops;
       $currentRouteName = Mage::app()->getRequest()->getRouteName();
 
-      if (empty($hullUserEmail)) {
-        if ($currentRouteName != 'hull') {
-          $targetUrl = Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_WEB).'hull/user/complete';
-          Mage::app()->getResponse()->setRedirect($targetUrl);
-        }
-        return null;
-      } else {
+      if (!empty($hullUserEmail)) {
         $customer->setId(null)
           ->setHullUid($this->getId())
           ->setGender($this->getGender())
@@ -165,11 +159,21 @@ class Hull_Connection_Model_User extends Varien_object {
           ->setFirstname($this->getFirstName())
           ->setLastname($this->getLastName())
           ->setPassword($customer->generatePassword(8));
-        $customer->save();
+        try {
+          $customer->save();
+        } catch (Exception $e) {
+          Mage::getSingleton('core/session')->addError($e->getMessage());
+          return null;
+        }
         $customer->setConfirmation(null);
         $customer->save();
         $customer->sendNewAccountEmail();
         return $customer;
+      } else {
+        if ($currentRouteName != 'hull') {
+          Mage::app()->getFrontController()->getResponse()->setRedirect(Mage::getUrl('hull/user/complete'));
+        }
+        return null;
       }
     }
   }
