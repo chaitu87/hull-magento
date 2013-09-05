@@ -4,7 +4,9 @@ class Hull_Connection_Model_Observer
 
   public function currentCustomer($params)
   {
-
+    if ($this->isAdmin()) {
+      return;
+    }
     $customerSession = $this->_getCustomerSession();
     $hullSession     = $this->_getHullSession();
 
@@ -64,6 +66,16 @@ class Hull_Connection_Model_Observer
     return Mage::getSingleton('customer/session');
   }
 
+  protected function isAdmin() {
+    if (Mage::app()->getStore()->isAdmin()) {
+      return true;
+    }
 
+    if (Mage::getDesign()->getArea() == 'adminhtml') {
+      return true;
+    }
+
+    return false;
+  }
 
 }
