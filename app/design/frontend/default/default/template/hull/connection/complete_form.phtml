@@ -16,6 +16,11 @@
                         <input type="text" name="email" id="email_address" value="" placeholder="Enter your email" title="<?php echo $this->__('Email Address') ?>" class="input-text validate-email required-entry" />
                     </div>
                 </li>
+                <li>
+                    <div class="input-box">
+                      <a href="#" onclick="Hull.logout().then(function () {window.location.reload();})">Cancel login</a>
+                    </div>
+                </li>
             </ul>
         </div>
         <div class="buttons-set">
