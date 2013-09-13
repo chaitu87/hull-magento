@@ -1,25 +1,13 @@
+<script type="text/javascript" src="https://d3f5pyioow99x0.cloudfront.net/<?php echo $this->getHullVersion() ?>/hull.js"></script>
 <script type="text/javascript">
-(function (_w, _d) {
-if (!window.jQuery) {
-  var _error = "jQuery could not be found. Please make sure it is loaded before hull.js.";
-  alert(_error);
-  throw new Error(_error);
-} else {
-  var head = document.getElementsByTagName('head')[0];
-  var hull_js = document.createElement('script');
-  hull_js.setAttribute('src','https://d3f5pyioow99x0.cloudfront.net/<?php echo $this->getHullVersion() ?>/hull.js');
-  var isHullInitExecuted = false;
-  hull_js.onload = hull_js.onreadystatechange = function () {
-    if (!this.readyState || this.readyState === "loaded" || this.readyState == "complete") {
-      if (!isHullInitExecuted) {
-        isHullInitExecuted = true;
-        var hull_init = document.createElement('script');
-        hull_init.innerHTML = '(function() { var HullConfig = <?php echo json_encode($this->getInitConfig())?>; Hull.on("hull.login", function() { document.location.reload(); }); Hull.init(HullConfig, function() {}); })();';
-        head.appendChild(hull_init);
-      }
-    }
-  }
-  head.appendChild(hull_js);
-}
-})(window, document);
+(function() {
+  var HullConfig = <?php echo json_encode($this->getInitConfig())?>;
+  Hull.on("hull.logout", function() {
+    document.location.reload();
+  });
+  Hull.on("hull.login", function() {
+    document.location.reload();
+  });
+  Hull.init(HullConfig);
+})();
 </script>
