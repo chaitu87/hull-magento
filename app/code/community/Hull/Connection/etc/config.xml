@@ -41,7 +41,7 @@
         <observers>
           <hull_connection>
             <type>singleton</type>
-            <class>hull_connection/observer</class>
+            <class>hull_connection/observer_customer</class>
             <method>customerJustLoggedIn</method>
           </hull_connection>
         </observers>
@@ -50,7 +50,7 @@
         <observers>
           <hull_connection>
             <type>singleton</type>
-            <class>hull_connection/observer</class>
+            <class>hull_connection/observer_customer</class>
             <method>customerJustLoggedOut</method>
           </hull_connection>
         </observers>
@@ -59,7 +59,7 @@
         <observers>
           <hull_connection>
             <type>singleton</type>
-            <class>hull_connection/observer</class>
+            <class>hull_connection/observer_customer</class>
             <method>currentCustomer</method>
           </hull_connection>
         </observers>
@@ -83,6 +83,17 @@
     </layout>
   </frontend>
   <adminhtml>
+    <events>
+      <catalog_product_save_after>
+        <observers>
+          <hull_connection>
+            <type>singleton</type>
+            <class>hull_connection/observer_product</class>
+            <method>updateEntity</method>
+          </hull_connection>
+        </observers>
+      </catalog_product_save_after>
+    </events>
     <acl>
       <resources>
         <admin>

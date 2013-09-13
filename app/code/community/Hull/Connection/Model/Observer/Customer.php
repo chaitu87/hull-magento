@@ -1,5 +1,5 @@
 <?php
-class Hull_Connection_Model_Observer
+class Hull_Connection_Model_Observer_Customer
 {
 
   public function currentCustomer($params)
