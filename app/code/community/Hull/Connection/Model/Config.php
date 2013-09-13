@@ -7,7 +7,7 @@ class Hull_Connection_Model_Config
   const XML_PATH_APP_SECRET = 'hull_options/hull/app_secret';
   const XML_PATH_HULL_VERSION = 'hull_options/hull/hull_version';
 
-  const DEFAULT_HULL_VERSION = '0.6.7';
+  const DEFAULT_HULL_VERSION = '0.6.8';
 
   public function isEnabled($storeId=null)
   {
