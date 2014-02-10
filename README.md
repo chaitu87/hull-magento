@@ -28,6 +28,9 @@ The easiest way is to run the provided install script from the root of your Mage
 
     $ curl -kL https://raw.github.com/hull/hull-magento/master/install.sh | sh
 
+__Watch out!__ You may need to clear the Magento cache to be able to activate
+the plugin.
+
 ## Requirements
 
 ### jQuery
