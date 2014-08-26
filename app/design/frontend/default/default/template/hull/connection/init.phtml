@@ -2,10 +2,10 @@
 <script type="text/javascript">
 (function() {
   var HullConfig = <?php echo json_encode($this->getInitConfig())?>;
-  Hull.on("hull.logout", function() {
-    document.location.reload();
+  Hull.on("hull.auth.logout", function() {
+    document.location = "/customer/account/logout";
   });
-  Hull.on("hull.login", function() {
+  Hull.on("hull.auth.login", function() {
     document.location.reload();
   });
   Hull.init(HullConfig);
